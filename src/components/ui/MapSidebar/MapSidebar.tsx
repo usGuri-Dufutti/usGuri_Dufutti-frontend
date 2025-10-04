@@ -14,7 +14,7 @@ import { MapPin, Layers, Satellite, Calendar, Download, Eye } from "lucide-react
 
 function MapSidebar() {
     return (
-        <Sidebar className="w-72 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border-r border-gray-200 dark:border-gray-800 h-full">
+        <Sidebar className="w-64 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border-r border-gray-200 dark:border-gray-800 h-full">
             {/* Background Gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-green-50 to-blue-50 dark:from-gray-900 dark:via-green-900/10 dark:to-blue-900/10 -z-10" />
             
