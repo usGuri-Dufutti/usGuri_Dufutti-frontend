@@ -103,7 +103,7 @@ export function Header() {
                   navigate("/map")
                   setIsMobileMenuOpen(false)
                 }}
-                className="px-6 py-3 bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg text-center"
+                className="px-6 py-3 bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg text-center active:scale-95"
               >
                 Explorar Mapa
               </button>
