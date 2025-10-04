@@ -10,9 +10,12 @@ import {
     SidebarMenuButton,
     SidebarSeparator
 } from "@/components/ui/sidebar";
-import { MapPin, Layers, Satellite, Calendar, Download, Eye } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { MapPin, Layers, Calendar, Download, Eye, Leaf} from "lucide-react";
 
 function MapSidebar() {
+    const navigate = useNavigate();
+    
     return (
         <Sidebar className="w-64 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border-r border-gray-200 dark:border-gray-800 h-full">
             {/* Background Gradient */}
@@ -20,9 +23,11 @@ function MapSidebar() {
             
             <SidebarHeader className="p-4 border-b border-gray-200 dark:border-gray-800">
                 <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg flex items-center justify-center">
-                        <Satellite className="w-4 h-4 text-white" />
-                    </div>
+                    <div className="cursor-pointer active:scale-95" 
+                    onClick={() => navigate("/")}
+                    >
+                        <Leaf className="w-7 h-7 sm:w-8 sm:h-8 text-green-600 dark:text-green-400"></Leaf>
+                        </div>
                     <div>
                         <h2 className="text-lg font-bold text-gray-900 dark:text-white">Bloomwatch</h2>
                         <p className="text-xs text-gray-600 dark:text-gray-400">Monitoramento NASA</p>
