@@ -22,7 +22,11 @@ function Map() {
         pathOptions={{ color: "red", fillColor: "red", fillOpacity: 0.3, weight: 2 }}
       >
         <Popup>
-          <PopupComponent />
+          <PopupComponent 
+          latitude={-29.1671084}
+          longitude={-51.5244032}
+          description="Center of Caxias do Sul"
+          />
         </Popup>
       </Circle>
     </MapContainer>
