@@ -23,6 +23,11 @@ export function Header() {
     }
   }
 
+  const handleExploreMap = () => {
+    navigate("/map")
+    setIsMobileMenuOpen(false)
+  }
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -60,7 +65,7 @@ export function Header() {
               Equipe
             </button>
             <button
-              onClick={() => navigate("/map")}
+              onClick={handleExploreMap}
               className="px-6 py-2 bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-green-200 dark:hover:shadow-green-900/30"
             >
               Explorar Mapa
