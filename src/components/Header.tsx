@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react"
 import { Leaf, Menu, X } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +21,11 @@ export function Header() {
       element.scrollIntoView({ behavior: "smooth" })
       setIsMobileMenuOpen(false)
     }
+  }
+
+  const handleExploreMap = () => {
+    navigate("/map")
+    setIsMobileMenuOpen(false)
   }
 
   return (
@@ -58,7 +65,7 @@ export function Header() {
               Equipe
             </button>
             <button
-              onClick={() => scrollToSection("mapa")}
+              onClick={handleExploreMap}
               className="px-6 py-2 bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-green-200 dark:hover:shadow-green-900/30"
             >
               Explorar Mapa
@@ -97,7 +104,7 @@ export function Header() {
                 Equipe
               </button>
               <button
-                onClick={() => scrollToSection("mapa")}
+                onClick={handleExploreMap}
                 className="px-6 py-3 bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg text-center"
               >
                 Explorar Mapa

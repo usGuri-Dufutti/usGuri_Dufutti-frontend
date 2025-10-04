@@ -1,11 +1,11 @@
 import { ArrowRight, Satellite } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 export function HeroSection() {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
+  const navigate = useNavigate()
+
+  const handleExploreMap = () => {
+    navigate("/map")
   }
 
   return (
@@ -44,14 +44,13 @@ export function HeroSection() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
-              onClick={() => scrollToSection("sobre")}
+              onClick={handleExploreMap}
               className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-semibold text-base sm:text-lg px-8 py-4 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-green-200 dark:hover:shadow-green-900/30 group w-full sm:w-auto"
             >
               Explorar Mapa
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
             </button>
           </div>
-
         </div>
       </div>
     </section>
