@@ -47,7 +47,7 @@ export function HeroSection() {
               onClick={() => scrollToSection("sobre")}
               className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-semibold text-base sm:text-lg px-8 py-4 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-green-200 dark:hover:shadow-green-900/30 group w-full sm:w-auto"
             >
-              Ver Detalhes
+              Explorar Mapa
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
             </button>
           </div>
