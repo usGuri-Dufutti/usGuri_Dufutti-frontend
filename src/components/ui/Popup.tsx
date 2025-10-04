@@ -1,37 +1,91 @@
-import { Card, CardHeader, CardTitle, CardContent } from "./card";
-import { Button } from "./button";
 
-interface PopupProps {
-  latitude: number;
-  longitude: number;
-  description: string;
+
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { MapPin, X } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+
+interface PopupComponentProps {
+  latitude: number
+  longitude: number
+  description: string
+  onClose?: () => void
+  onMoreInfo?: () => void
 }
 
-function PopupComponent({ latitude, longitude, description }: PopupProps) {
+function PopupComponent({ latitude, longitude, description, onClose, onMoreInfo }: PopupComponentProps) {
   return (
-    <Card className="w-64 h-64 bg-green-300/50 flex flex-col gap-2 shadow-md    ">
-      <CardHeader>
-        <CardTitle>Location Info</CardTitle>
+    <Card className="w-[400px] bg-emerald-50/95 backdrop-blur-sm border-emerald-200 shadow-xl">
+      <CardHeader className="pb-3">
+        <div className="flex items-start justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+              <MapPin className="w-5 h-5 text-emerald-700" />
+            </div>
+            <div>
+              <CardTitle className="text-lg font-semibold text-emerald-950">Location Info</CardTitle>
+              <p className="text-xs text-emerald-700 mt-0.5">Geographic coordinates</p>
+            </div>
+          </div>
+          {onClose && (
+            <Button
+              size="icon"
+              variant="ghost"
+              className="h-8 w-8 -mt-1 -mr-1 hover:bg-emerald-100 text-emerald-700"
+              onClick={onClose}
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          )}
+        </div>
       </CardHeader>
 
-      <CardContent className="m-0">
-        <p><b>Latitude:</b> {latitude.toFixed(5)}</p>
-        <p><b>Longitude:</b> {longitude.toFixed(5)}</p>
-      </CardContent>
+      <CardContent className="space-y-4">
+        {/* Coordinates Grid */}
+        <div className="grid grid-cols-2 gap-3">
+          <div className="bg-white/60 rounded-lg p-3 border border-emerald-200/50">
+            <div className="flex items-center gap-1.5 mb-1">
+              <Badge
+                variant="outline"
+                className="h-5 px-1.5 text-[10px] bg-emerald-500/10 text-emerald-700 border-emerald-300"
+              >
+                LAT
+              </Badge>
+            </div>
+            <div className="text-base font-semibold font-mono text-emerald-950 tabular-nums">{latitude.toFixed(5)}</div>
+          </div>
 
-      <CardContent className="border-1 border-green-500 rounded-2xl flex-grid-col items-center justify-center p-2">
-      <p><b>Description:</b> {description}</p>
-      <Button 
-        className="w-full bg-green-500/50 hover:bg-green-500/70 active:scale-95"
-        onClick={() => {
-          console.log("More Info");
-        }}
-      >
-            More Info
+          <div className="bg-white/60 rounded-lg p-3 border border-emerald-200/50">
+            <div className="flex items-center gap-1.5 mb-1">
+              <Badge
+                variant="outline"
+                className="h-5 px-1.5 text-[10px] bg-emerald-500/10 text-emerald-700 border-emerald-300"
+              >
+                LON
+              </Badge>
+            </div>
+            <div className="text-base font-semibold font-mono text-emerald-950 tabular-nums">
+              {longitude.toFixed(5)}
+            </div>
+          </div>
+        </div>
+
+        {/* Description */}
+        <div className="bg-white/60 rounded-lg p-4 border border-emerald-200/50">
+          <div className="text-xs font-medium text-emerald-700 uppercase tracking-wider mb-2">Description</div>
+          <p className="text-sm text-emerald-950 leading-relaxed">{description}</p>
+        </div>
+
+        {/* Action Button */}
+        <Button
+          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm active:scale-[0.98] transition-transform"
+          onClick={onMoreInfo}
+        >
+          Ask About...
         </Button>
       </CardContent>
     </Card>
-  );
+  )
 }
 
 export default PopupComponent;

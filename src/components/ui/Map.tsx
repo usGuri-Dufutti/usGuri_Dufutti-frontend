@@ -21,11 +21,11 @@ function Map() {
         radius={1000}
         pathOptions={{ color: "red", fillColor: "red", fillOpacity: 0.3, weight: 2 }}
       >
-        <Popup>
+        <Popup maxWidth={400} autoPan={true} closeButton={false}>
           <PopupComponent 
           latitude={-29.1671084}
           longitude={-51.5244032}
-          description="Center of Caxias do Sul"
+          description="Center of Bento Gonçalves"
           />
         </Popup>
       </Circle>
