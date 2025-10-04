@@ -5,22 +5,22 @@ export function AboutSection() {
     {
       icon: Activity,
       title: "Monitoramento em Tempo Real",
-      description: "Detecção automática de eventos de floração através de análise de índices de vegetação (NDVI, EVI) com atualização diária",
+      description: "Detecção automática de floração para antecipar crises ambientais e apoiar políticas públicas de mitigação de mudanças climáticas.",
     },
     {
       icon: Users,
       title: "Saúde Pública",
-      description: "Sistema de alertas para gestão de crises de pólen, auxiliando populações sensíveis e profissionais de saúde",
+      description: "Sistema de alertas para populações sensíveis, prevenindo doenças respiratórias relacionadas ao pólen e apoiando decisões estratégicas de saúde.",
     },
     {
       icon: TrendingUp,
-      title: "Agricultura de Precisão",
-      description: "Dados geoespaciais para otimização de manejo agrícola, previsão de safras e planejamento de colheitas",
+      title: "Agricultura Sustentável",
+      description: "Dados geoespaciais para planejamento agrícola responsável, otimização de recursos naturais e promoção de práticas agrícolas sustentáveis.",
     },
     {
       icon: Database,
-      title: "Pesquisa Científica",
-      description: "Base de dados histórica para estudos de biodiversidade, mudanças climáticas e conservação de ecossistemas",
+      title: "Pesquisa e Conservação",
+      description: "Base de dados histórica que subsidia políticas de preservação da biodiversidade e estratégias de conservação ambiental.",
     },
   ]
 
@@ -28,17 +28,17 @@ export function AboutSection() {
     {
       icon: Satellite,
       title: "Aquisição de Dados",
-      content: "Integração com múltiplos satélites da NASA (MODIS, Landsat-8/9) para captura de imagens multiespectrais. Processamento de bandas espectrais (vermelho, NIR) para cálculo de índices de vegetação com resolução temporal diária e espacial de 250-500m.",
+      content: "Integração com múltiplos satélites da NASA (MODIS, Landsat-8/9) para captura de imagens multiespectrais. Processamento de bandas espectrais (vermelho, NIR) para cálculo de índices de vegetação com atualização diária e cobertura global.",
     },
     {
       icon: Database,
       title: "Processamento e Análise",
-      content: "Pipeline automatizado de processamento de dados geoespaciais utilizando algoritmos de detecção de anomalias e machine learning. Análise temporal de séries históricas para identificação de padrões sazonais e eventos de floração atípicos.",
+      content: "Pipeline automatizado de análise de dados geoespaciais utilizando algoritmos de detecção de anomalias e machine learning. Identificação de padrões sazonais e eventos de floração atípicos para subsidiar políticas públicas e pesquisas científicas.",
     },
     {
       icon: Globe,
       title: "Visualização e Acesso",
-      content: "Interface web interativa com mapas dinâmicos para visualização de dados em múltiplas escalas. API REST para acesso programático aos dados, permitindo integração com sistemas externos e análises customizadas.",
+      content: "Interface web interativa com mapas dinâmicos para acompanhamento de eventos de floração em múltiplas escalas. API REST para integração com sistemas externos, permitindo análises customizadas e suporte à tomada de decisões estratégicas.",
     },
   ]
 
@@ -51,8 +51,9 @@ export function AboutSection() {
             Sobre o Projeto
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-            Sistema de monitoramento de floração baseado em sensoriamento remoto, utilizando dados da NASA Earth
-            Science Division para detecção e análise de eventos de floração em escala global.
+            O BloomWatch é uma ferramenta estratégica para políticas públicas e ações ambientais. 
+            Fornecendo dados precisos e em tempo real sobre eventos de floração, apoiamos saúde pública, agricultura sustentável 
+            e conservação da biodiversidade, transformando ciência em decisões concretas.
           </p>
         </div>
 
@@ -90,7 +91,7 @@ export function AboutSection() {
               Arquitetura do Sistema
             </h3>
             <p className="text-lg text-gray-600 dark:text-gray-300">
-              Pipeline completo de aquisição, processamento e visualização de dados geoespaciais
+              Pipeline completo de aquisição, processamento e visualização de dados geoespaciais para suporte à tomada de decisão estratégica.
             </p>
           </div>
 
