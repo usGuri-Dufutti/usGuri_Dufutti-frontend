@@ -1,7 +1,14 @@
+import { Card, CardHeader, CardTitle } from "./card";
+  
+
 function Popup() {
 return (
     <div>
-        <h1>Popup</h1>
+       <Card>
+        <CardHeader>
+            <CardTitle>Popup</CardTitle>
+        </CardHeader>
+       </Card>
     </div>
 )
 }
