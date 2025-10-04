@@ -1,16 +1,16 @@
-import { Header } from "./components/Header"
-import { HeroSection } from "./components/HeroSection"
-import { AboutSection } from "./components/AboutSection"
-import { TeamSection } from "./components/TeamSection"
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+
+import HomePage from "./pages/HomePage"
+import MapPage from "./pages/MapPage"
 
 function App() {
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900">
-      <Header />
-      <HeroSection />
-      <AboutSection />
-      <TeamSection />
-    </main>
+    <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/map" element={<MapPage />} />
+        </Routes>
+      </Router>
   )
 }
 
