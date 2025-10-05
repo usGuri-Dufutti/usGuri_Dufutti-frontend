@@ -38,7 +38,7 @@ export function HeroSection() {
           {/* Description */}
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
             Plataforma de detecção e visualização de floração utilizando dados de satélite da NASA Earth Science
-            Division e algoritmos de processamento de imagens multiespectrais
+            Division
           </p>
 
           {/* CTA Buttons */}
