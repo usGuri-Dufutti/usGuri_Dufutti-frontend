@@ -29,7 +29,7 @@ function Map({ onViewMoreDetails }: MapProps) {
           <PopupComponent 
           latitude={-29.1671084}
           longitude={-51.5244032}
-          description="Center of Bento Gonçalvesaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          description="Center of Bento Gonçalves"
           onViewMoreDetails={onViewMoreDetails}
           />
         </Popup>
