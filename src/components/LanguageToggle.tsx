@@ -19,7 +19,7 @@ export default function LanguageToggle() {
   return (
     <Button onClick={toggle} variant="outline" size="sm" aria-label="Toggle language" className="inline-flex items-center gap-2">
       <span className={isPt ? "fi fi-br" : "fi fi-us"} aria-hidden="true"></span>
-      {isPt ? "EN" : "PT"}
+      {isPt ? "PT" : "EN"}
     </Button>
   )
 }
