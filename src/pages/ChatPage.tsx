@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Leaf, Send, Loader2, Satellite, MapPin } from "lucide-react"
-import { useNavigate, useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom"
+import { sendChatMessage } from "@/services/api"
 
 interface Message {
   role: "user" | "assistant"
@@ -8,11 +9,11 @@ interface Message {
 }
 
 export default function ChatPage() {
-  const navigate = useNavigate()
   const location = useLocation()
   
-  const locationState = location.state as { locationDescription?: string } || {}
+  const locationState = location.state as { locationDescription?: string; areaId?: number } || {}
   const locationDescription = locationState.locationDescription || "Área de monitoramento de vegetação"
+  const areaId = locationState.areaId
 
   const [prompt, setPrompt] = useState("")
   const [messages, setMessages] = useState<Message[]>([])
@@ -20,7 +21,7 @@ export default function ChatPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!prompt.trim() || isLoading) return
+    if (!prompt.trim() || isLoading || !areaId) return
 
     const userMessage = prompt.trim()
     setPrompt("")
@@ -28,11 +29,8 @@ export default function ChatPage() {
     setIsLoading(true)
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-
-      const aiResponse = `Com base nos dados de satélite da região de Caxias do Sul, posso fornecer informações detalhadas sobre "${userMessage}". A área monitorada apresenta características específicas da Mata Atlântica de altitude, com índice NDVI de 0.68 indicando vegetação saudável e ativa. Os dados mostram padrões de floração consistentes com o período sazonal atual.`
-
-      setMessages((prev) => [...prev, { role: "assistant", content: aiResponse }])
+      const response = await sendChatMessage(areaId, userMessage)
+      setMessages((prev) => [...prev, { role: "assistant", content: response.answer }])
     } catch (error) {
       console.error("Error fetching AI response:", error)
       setMessages((prev) => [
@@ -137,7 +135,7 @@ export default function ChatPage() {
               />
               <button
                 type="submit"
-                disabled={!prompt.trim() || isLoading}
+                disabled={!prompt.trim() || isLoading || !areaId}
                 className="h-[60px] w-[60px] flex items-center justify-center bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 disabled:from-gray-400 disabled:to-gray-500 border border-green-200 dark:border-green-800 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
               >
                 {isLoading ? (

@@ -61,3 +61,19 @@ export async function getAreaById(id: number): Promise<AreaDetail> {
   const { data } = await api.get<AreaDetail>(`/areas/${id}`);
   return data;
 }
+
+// ---- Chat API ----
+export interface ChatRequest {
+  question: string;
+}
+
+export interface ChatResponse {
+  question: string;
+  answer: string;
+  area_id: number;
+}
+
+export async function sendChatMessage(areaId: number, question: string): Promise<ChatResponse> {
+  const { data } = await api.post<ChatResponse>(`/areas/${areaId}/chat`, { question });
+  return data;
+}

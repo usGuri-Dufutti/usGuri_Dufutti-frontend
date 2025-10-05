@@ -5,7 +5,7 @@ import PopupComponent from "./Popup"; // your React Popup component
 import { getAreas, getAreaById, type AreaSummary } from "@/services/api";
 
 interface MapProps {
-  onViewMoreDetails?: (description: string, coordinates: { latitude: number; longitude: number }) => void
+  onViewMoreDetails?: (description: string, coordinates: { latitude: number; longitude: number }, areaId: number) => void
 }
 
 function Map({ onViewMoreDetails }: MapProps) {
@@ -68,6 +68,7 @@ function Map({ onViewMoreDetails }: MapProps) {
                 latitude={lat}
                 longitude={lng}
                 description={description}
+                areaId={area.id}
                 onViewMoreDetails={onViewMoreDetails}
               />
             </Popup>

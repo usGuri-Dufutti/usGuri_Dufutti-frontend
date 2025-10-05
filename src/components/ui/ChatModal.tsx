@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Leaf, Send, Loader2, Satellite, MapPin, X, ArrowLeft } from "lucide-react"
+import { sendChatMessage } from "@/services/api"
 
 interface Message {
   role: "user" | "assistant"
@@ -10,12 +11,13 @@ interface Message {
 
 interface ChatModalProps {
   locationDescription?: string
+  areaId: number
   onClose: () => void
   showGoBack?: boolean
   onGoBack?: () => void
 }
 
-function ChatModal({ locationDescription = "Área de monitoramento de vegetação", onClose, showGoBack = false, onGoBack }: ChatModalProps) {
+function ChatModal({ locationDescription = "Área de monitoramento de vegetação", areaId, onClose, showGoBack = false, onGoBack }: ChatModalProps) {
   const [prompt, setPrompt] = useState("")
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)
@@ -48,13 +50,8 @@ function ChatModal({ locationDescription = "Área de monitoramento de vegetaçã
     setIsLoading(true)
 
     try {
-      // --- MOCK API CALL ---
-      // In a real application, you would replace this with an actual API call.
-      // Example: const response = await fetch('/api/chat', { ... });
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-      const aiResponse = `Com base nos dados de satélite da região de Caxias do Sul, posso fornecer informações detalhadas sobre "${userMessage}". A área monitorada apresenta características específicas da Mata Atlântica de altitude, com índice NDVI de 0.68 indicando vegetação saudável e ativa.`
-      
-      setMessages((prev) => [...prev, { role: "assistant", content: aiResponse }])
+      const response = await sendChatMessage(areaId, userMessage)
+      setMessages((prev) => [...prev, { role: "assistant", content: response.answer }])
     } catch (error) {
       console.error("Error fetching AI response:", error)
       setMessages((prev) => [

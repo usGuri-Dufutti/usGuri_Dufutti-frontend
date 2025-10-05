@@ -9,10 +9,11 @@ function MapPage() {
     const [chatModalData, setChatModalData] = useState<{
         description: string;
         coordinates: { latitude: number; longitude: number };
+        areaId: number;
     } | null>(null);
 
-    const handleViewMoreDetails = (description: string, coordinates: { latitude: number; longitude: number }) => {
-        setChatModalData({ description, coordinates });
+    const handleViewMoreDetails = (description: string, coordinates: { latitude: number; longitude: number }, areaId: number) => {
+        setChatModalData({ description, coordinates, areaId });
         setShowChatModal(true);
     };
 
@@ -39,6 +40,7 @@ function MapPage() {
             {showChatModal && chatModalData && (
                 <ChatModal
                     locationDescription={chatModalData.description}
+                    areaId={chatModalData.areaId}
                     onClose={handleCloseChatModal}
                     showGoBack={true}
                     onGoBack={handleGoBack}
