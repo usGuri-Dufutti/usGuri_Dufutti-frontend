@@ -1,44 +1,46 @@
 import { Activity, Database, Globe, Satellite, TrendingUp, Users } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export function AboutSection() {
+  const { t } = useTranslation()
   const benefits = [
     {
       icon: Activity,
-      title: "Monitoramento em Tempo Real",
-      description: "Detecção automática de floração para antecipar crises ambientais e apoiar políticas públicas de mitigação de mudanças climáticas.",
+      title: t("about.benefits.monitoring.title"),
+      description: t("about.benefits.monitoring.description"),
     },
     {
       icon: Users,
-      title: "Saúde Pública",
-      description: "Sistema de alertas para populações sensíveis, prevenindo doenças respiratórias relacionadas ao pólen e apoiando decisões estratégicas de saúde.",
+      title: t("about.benefits.health.title"),
+      description: t("about.benefits.health.description"),
     },
     {
       icon: TrendingUp,
-      title: "Agricultura Sustentável",
-      description: "Dados geoespaciais para planejamento agrícola responsável, otimização de recursos naturais e promoção de práticas agrícolas sustentáveis.",
+      title: t("about.benefits.agriculture.title"),
+      description: t("about.benefits.agriculture.description"),
     },
     {
       icon: Database,
-      title: "Pesquisa e Conservação",
-      description: "Base de dados histórica que subsidia políticas de preservação da biodiversidade e estratégias de conservação ambiental.",
+      title: t("about.benefits.research.title"),
+      description: t("about.benefits.research.description"),
     },
   ]
 
   const projectDetails = [
     {
       icon: Satellite,
-      title: "Aquisição de Dados",
-      content: "Integração com múltiplos satélites da NASA (MODIS, Landsat-8/9) para captura de imagens multiespectrais. Processamento de bandas espectrais (vermelho, NIR) para cálculo de índices de vegetação com atualização diária e cobertura global.",
+      title: t("about.details.data.title"),
+      content: t("about.details.data.content"),
     },
     {
       icon: Database,
-      title: "Processamento e Análise",
-      content: "Pipeline automatizado de análise de dados geoespaciais utilizando algoritmos de detecção de anomalias e machine learning. Identificação de padrões sazonais e eventos de floração atípicos para subsidiar políticas públicas e pesquisas científicas.",
+      title: t("about.details.processing.title"),
+      content: t("about.details.processing.content"),
     },
     {
       icon: Globe,
-      title: "Visualização e Acesso",
-      content: "Interface web interativa com mapas dinâmicos para acompanhamento de eventos de floração em múltiplas escalas. API REST para integração com sistemas externos, permitindo análises customizadas e suporte à tomada de decisões estratégicas.",
+      title: t("about.details.visualization.title"),
+      content: t("about.details.visualization.content"),
     },
   ]
 
@@ -48,12 +50,10 @@ export function AboutSection() {
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Sobre o Projeto
+            {t("about.sectionTitle")}
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-            O BloomWatch é uma ferramenta estratégica para políticas públicas e ações ambientais. 
-            Fornecendo dados precisos e em tempo real sobre eventos de floração, apoiamos saúde pública, agricultura sustentável 
-            e conservação da biodiversidade, transformando ciência em decisões concretas.
+            {t("about.sectionParagraph")}
           </p>
         </div>
 
@@ -88,10 +88,10 @@ export function AboutSection() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Arquitetura do Sistema
+              {t("about.architectureTitle")}
             </h3>
             <p className="text-lg text-gray-600 dark:text-gray-300">
-              Pipeline completo de aquisição, processamento e visualização de dados geoespaciais para suporte à tomada de decisão estratégica.
+              {t("about.architectureDescription")}
             </p>
           </div>
 
