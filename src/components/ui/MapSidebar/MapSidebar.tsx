@@ -17,12 +17,12 @@ function MapSidebar() {
     
     const handleAddArea = () => {
         console.log("Navegar para cadastro de área");
-        // navigate("/register-area");
+        navigate("/register-area");
     };
 
     const handleAddPlant = () => {
         console.log("Navegar para cadastro de planta");
-        // navigate("/register-plant");
+        navigate("/register-plant");
     };
     
     return (
