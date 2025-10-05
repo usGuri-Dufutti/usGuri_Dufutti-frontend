@@ -92,8 +92,8 @@ function ChatModal({ locationDescription = "Área de monitoramento de vegetaçã
       />
 
       {/* Chat Card */}
-      <div className="relative w-full max-w-3xl mx-4 flex flex-col h-[90vh] max-h-[700px]">
-        <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl border border-green-200 dark:border-green-800 shadow-2xl flex flex-col flex-1">
+      <div className="relative w-full max-w-3xl mx-4 flex flex-col h-[90vh] max-h-[700px] min-h-0">
+        <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl border border-green-200 dark:border-green-800 shadow-2xl flex flex-col flex-1 min-h-0">
           {/* Header */}
           <div className="p-4 sm:p-6 border-b border-green-200 dark:border-green-800 flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -127,8 +127,19 @@ function ChatModal({ locationDescription = "Área de monitoramento de vegetaçã
             </button>
           </div>
           
+          {/* Location Description (moved above messages) */}
+          <div className="mx-4 sm:mx-6 mt-4 mb-0 p-3 sm:p-4 rounded-lg bg-green-50/50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+            <div className="flex items-center gap-2 mb-2">
+              <MapPin className="w-4 h-4 text-green-600 dark:text-green-400 flex-shrink-0" />
+              <h4 className="text-sm font-semibold text-gray-900 dark:text-white">Área Analisada</h4>
+            </div>
+            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed break-words">
+              {locationDescription}
+            </p>
+          </div>
+          
           {/* Messages */}
-          <div className="flex-1 px-4 sm:px-6 py-4 overflow-y-auto">
+          <div className="flex-1 px-4 sm:px-6 py-4 overflow-y-auto min-h-0">
             <div className="space-y-4">
               {messages.length === 0 ? (
                 <div className="text-center py-8">
@@ -164,17 +175,6 @@ function ChatModal({ locationDescription = "Área de monitoramento de vegetaçã
             </div>
           </div>
           
-           {/* Location Description */}
-           <div className="mx-4 sm:mx-6 mb-4 p-3 sm:p-4 rounded-lg bg-green-50/50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
-            <div className="flex items-center gap-2 mb-2">
-              <MapPin className="w-4 h-4 text-green-600 dark:text-green-400 flex-shrink-0" />
-              <h4 className="text-sm font-semibold text-gray-900 dark:text-white">Área Analisada</h4>
-            </div>
-            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed break-words">
-              {locationDescription}
-            </p>
-          </div>
-
           {/* Input */}
           <form onSubmit={handleSubmit} className="px-4 sm:px-6 pb-4 sm:pb-6 pt-4 border-t border-green-200 dark:border-green-800">
             <div className="flex items-start gap-3">
