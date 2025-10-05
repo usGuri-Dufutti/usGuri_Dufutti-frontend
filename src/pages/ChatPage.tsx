@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Leaf, Send, Loader2, Satellite, MapPin } from "lucide-react"
-import { useNavigate, useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 
 interface Message {
   role: "user" | "assistant"
@@ -8,11 +9,11 @@ interface Message {
 }
 
 export default function ChatPage() {
-  const navigate = useNavigate()
   const location = useLocation()
+  const { t } = useTranslation()
   
   const locationState = location.state as { locationDescription?: string } || {}
-  const locationDescription = locationState.locationDescription || "Área de monitoramento de vegetação"
+  const locationDescription = locationState.locationDescription || ""
 
   const [prompt, setPrompt] = useState("")
   const [messages, setMessages] = useState<Message[]>([])
@@ -30,7 +31,7 @@ export default function ChatPage() {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
-      const aiResponse = `Com base nos dados de satélite da região de Caxias do Sul, posso fornecer informações detalhadas sobre "${userMessage}". A área monitorada apresenta características específicas da Mata Atlântica de altitude, com índice NDVI de 0.68 indicando vegetação saudável e ativa. Os dados mostram padrões de floração consistentes com o período sazonal atual.`
+      const aiResponse = `Based on the satellite data for the queried region, I can provide detailed information about "${userMessage}". The monitored area shows a healthy vegetation signal (e.g., NDVI ~0.68) with bloom patterns consistent with the current seasonal period.`
 
       setMessages((prev) => [...prev, { role: "assistant", content: aiResponse }])
     } catch (error) {
@@ -39,7 +40,7 @@ export default function ChatPage() {
         ...prev,
         {
           role: "assistant",
-          content: "Desculpe, ocorreu um erro ao processar sua pergunta. Por favor, tente novamente.",
+          content: t("chat.error"),
         },
       ])
     } finally {
@@ -62,11 +63,9 @@ export default function ChatPage() {
                 <Leaf className="w-5 h-5 text-white" />
               </div>
               <div className="flex-1 min-w-0">
-                <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white truncate">
-                  Assistente IA
-                </h2>
+                <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white truncate">{t("chat.assistant")}</h2>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  Análise de Vegetação e Floração
+                  {t("chat.subtitle")}
                 </p>
               </div>
             </div>
@@ -76,10 +75,10 @@ export default function ChatPage() {
           <div className="mx-4 sm:mx-6 mt-4 p-3 sm:p-4 rounded-lg bg-green-50/50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
             <div className="flex items-center gap-2 mb-2">
               <MapPin className="w-4 h-4 text-green-600 dark:text-green-400 flex-shrink-0" />
-              <h4 className="text-sm font-semibold text-gray-900 dark:text-white">Área Analisada</h4>
+              <h4 className="text-sm font-semibold text-gray-900 dark:text-white">{t("chat.analyzedArea")}</h4>
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed break-words">
-              {locationDescription}
+              {locationDescription || "-"}
             </p>
           </div>
 
@@ -90,7 +89,7 @@ export default function ChatPage() {
                 <div className="text-center py-8">
                   <Satellite className="w-10 h-10 sm:w-12 sm:h-12 text-gray-400 dark:text-gray-600 mx-auto mb-3" />
                   <p className="text-gray-600 dark:text-gray-400 text-sm px-4">
-                    Faça uma pergunta sobre a vegetação, floração ou dados de satélite desta área
+                    {t("chat.emptyPrompt")}
                   </p>
                 </div>
               ) : (
@@ -116,7 +115,7 @@ export default function ChatPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Loader2 className="w-4 h-4 animate-spin text-green-600" />
-                      <span className="text-sm">Analisando dados de satélite...</span>
+                      <span className="text-sm">{t("chat.analyzing")}</span>
                     </div>
                   </div>
                 </div>
@@ -130,7 +129,7 @@ export default function ChatPage() {
               <textarea
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
-                placeholder="Digite sua pergunta sobre a vegetação local..."
+                placeholder={t("chat.askPlaceholder")}
                 className="flex-1 min-h-[60px] px-3 py-2 resize-none bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl backdrop-blur-sm focus:border-green-500 dark:focus:border-green-400 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200 text-sm"
                 disabled={isLoading}
                 rows={2}

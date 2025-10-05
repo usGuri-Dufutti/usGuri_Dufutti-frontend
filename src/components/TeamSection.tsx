@@ -1,32 +1,34 @@
 import { Code, Database, Palette, Rocket } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export function TeamSection() {
+  const { t } = useTranslation()
   const team = [
     {
       icon: Code,
       name: "Gabriel Pasternak",
-      role: "Desenvolvedor Backend",
+      role: t("team.roles.backendDev"),
       color: "from-green-500/20 to-green-500/5",
       iconColor: "text-green-600 dark:text-green-400",
     },
     {
       icon: Database,
       name: "Gabriel Hoppe",
-      role: "Desenvolvedor Backend",
+      role: t("team.roles.backendDev"),
       color: "from-blue-500/20 to-blue-500/5",
       iconColor: "text-blue-600 dark:text-blue-400",
     },
     {
       icon: Palette,
       name: "Juliano Chies",
-      role: "Desenvolvedor Frontend",
+      role: t("team.roles.frontendDev"),
       color: "from-purple-500/20 to-purple-500/5",
       iconColor: "text-purple-600 dark:text-purple-400",
     },
     {
       icon: Rocket,
       name: "Mateus Tieppo",
-      role: "Desenvolvedor Frontend",
+      role: t("team.roles.frontendDev"),
       color: "from-orange-500/20 to-orange-500/5",
       iconColor: "text-orange-600 dark:text-orange-400",
     },
@@ -38,10 +40,10 @@ export function TeamSection() {
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Nossa Equipe de Exploradores
+            {t("team.sectionTitle")}
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-            Unindo ciência, tecnologia e criatividade para entender o pulso da vida no planeta Terra.
+            {t("team.sectionParagraph")}
           </p>
         </div>
 

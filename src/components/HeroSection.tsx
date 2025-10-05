@@ -1,8 +1,10 @@
 import { ArrowRight, Satellite } from "lucide-react"
 import { useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 
 export function HeroSection() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const handleExploreMap = () => {
     navigate("/map")
@@ -23,22 +25,21 @@ export function HeroSection() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800 mb-8">
             <Satellite className="w-4 h-4 text-green-600 dark:text-green-400" />
-            <span className="text-sm font-medium text-gray-900 dark:text-white">Dados de Satélite NASA</span>
+            <span className="text-sm font-medium text-gray-900 dark:text-white">{t("hero.badge")}</span>
           </div>
 
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
-            <span className="text-balance">Monitoramento Global de</span>
+            <span className="text-balance">{t("hero.titleLine1")}</span>
             <br />
             <span className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 dark:from-green-400 dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
-              Eventos de Floração
+              {t("hero.titleLine2")}
             </span>
           </h1>
 
           {/* Description */}
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Plataforma de detecção e visualização de floração utilizando dados de satélite da NASA Earth Science
-            Division
+            {t("hero.description")}
           </p>
 
           {/* CTA Buttons */}
@@ -47,7 +48,7 @@ export function HeroSection() {
               onClick={handleExploreMap}
               className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-semibold text-base sm:text-lg px-8 py-4 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-green-200 dark:hover:shadow-green-900/30 group w-full sm:w-auto"
             >
-              Explorar Mapa
+              {t("hero.ctaExplore")}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
             </button>
           </div>

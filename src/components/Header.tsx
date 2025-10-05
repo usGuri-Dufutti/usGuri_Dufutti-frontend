@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react"
 import { Leaf, Menu, X } from "lucide-react"
 import { useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
+import LanguageToggle from "./LanguageToggle"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,35 +44,36 @@ export function Header() {
             <div className="relative">
               <Leaf className="w-7 h-7 sm:w-8 sm:h-8 text-green-600 dark:text-green-400" />
             </div>
-            <span className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white font-sans">BloomWatch</span>
+            <span className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white font-sans">{t("brand")}</span>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-4">
             <button
               onClick={() => scrollToSection("inicio")}
               className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors duration-200"
             >
-              Início
+              {t("nav.home")}
             </button>
             <button
               onClick={() => scrollToSection("sobre")}
               className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors duration-200"
             >
-              Sobre
+              {t("nav.about")}
             </button>
             <button
               onClick={() => scrollToSection("equipe")}
               className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors duration-200"
             >
-              Equipe
+              {t("nav.team")}
             </button>
             <button
               onClick={handleExploreMap}
               className="px-6 py-2 bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-green-200 dark:hover:shadow-green-900/30"
             >
-              Explorar Mapa
+              {t("nav.exploreMap")}
             </button>
+            <LanguageToggle />
           </nav>
 
           {/* Mobile Menu Button */}
@@ -89,19 +93,19 @@ export function Header() {
                 onClick={() => scrollToSection("inicio")}
                 className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors duration-200 text-left py-2"
               >
-                Início
+                {t("nav.home")}
               </button>
               <button
                 onClick={() => scrollToSection("sobre")}
                 className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors duration-200 text-left py-2"
               >
-                Sobre
+                {t("nav.about")}
               </button>
               <button
                 onClick={() => scrollToSection("equipe")}
                 className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors duration-200 text-left py-2"
               >
-                Equipe
+                {t("nav.team")}
               </button>
               <button
                 onClick={() => {
@@ -110,8 +114,9 @@ export function Header() {
                 }}
                 className="px-6 py-3 bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg text-center active:scale-95"
               >
-                Explorar Mapa
+                {t("nav.exploreMap")}
               </button>
+              <div className="pt-2"><LanguageToggle /></div>
             </div>
           </nav>
         )}

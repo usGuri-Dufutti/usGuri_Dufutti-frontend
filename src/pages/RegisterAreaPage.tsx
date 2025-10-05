@@ -9,6 +9,7 @@ import {
   Map,
   LandPlot
 } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 interface AreaData {
   area_id: string
@@ -30,6 +31,7 @@ interface AreaData {
 }
 
 export default function RegisterAreaPage() {
+  const { t } = useTranslation()
   const [formData, setFormData] = useState<AreaData>({
     area_id: "",
     area_name: "",
@@ -106,8 +108,8 @@ export default function RegisterAreaPage() {
             <LandPlot className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Sistema de Monitoramento de Áreas</h1>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Cadastro de áreas de vegetação</p>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{t("area.headerTitle")}</h1>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{t("area.headerSubtitle")}</p>
           </div>
         </div>
       </header>
@@ -120,8 +122,8 @@ export default function RegisterAreaPage() {
               <LandPlot className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">Nova Área de Monitoramento</h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Cadastre uma nova área para observação</p>
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t("area.newArea")}</h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{t("area.newAreaSubtitle")}</p>
             </div>
           </div>
 
@@ -130,7 +132,7 @@ export default function RegisterAreaPage() {
             <div className="space-y-4 p-4 rounded-lg bg-green-50/50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
               <div className="flex items-center gap-2">
                 <Map className="w-4 h-4 text-green-600 dark:text-green-400" />
-                <h3 className="font-semibold text-gray-900 dark:text-white">Informações da Área</h3>
+                <h3 className="font-semibold text-gray-900 dark:text-white">{t("area.areaInfo")}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
@@ -138,7 +140,7 @@ export default function RegisterAreaPage() {
                   name="area_name"
                   value={formData.area_name}
                   onChange={handleChange}
-                  placeholder="Nome da área"
+                  placeholder={t("area.areaName")}
                   className="md:col-span-2 px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                   required
                 />
@@ -146,7 +148,7 @@ export default function RegisterAreaPage() {
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
-                  placeholder="Descrição da área"
+                  placeholder={t("area.description")}
                   rows={3}
                   className="md:col-span-2 px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200 resize-none"
                 />
@@ -155,7 +157,7 @@ export default function RegisterAreaPage() {
                   name="area_size"
                   value={formData.area_size}
                   onChange={handleChange}
-                  placeholder="Tamanho (hectares)"
+                  placeholder={t("area.size")}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 />
                 <select
@@ -164,7 +166,7 @@ export default function RegisterAreaPage() {
                   onChange={handleChange}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 >
-                  <option value="">Tipo de vegetação</option>
+                  <option value="">{t("area.vegetationType")}</option>
                   <option value="floresta_ombrofila">Floresta Ombrófila</option>
                   <option value="floresta_estacional">Floresta Estacional</option>
                   <option value="campo_nativo">Campo Nativo</option>
@@ -178,7 +180,7 @@ export default function RegisterAreaPage() {
             <div className="space-y-4 p-4 rounded-lg bg-blue-50/50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
               <div className="flex items-center gap-2">
                 <Navigation className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                <h3 className="font-semibold text-gray-900 dark:text-white">Localização</h3>
+                <h3 className="font-semibold text-gray-900 dark:text-white">{t("area.location")}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
@@ -186,7 +188,7 @@ export default function RegisterAreaPage() {
                   name="latitude"
                   value={formData.latitude}
                   onChange={handleChange}
-                  placeholder="Latitude"
+                  placeholder={t("register.latitude")}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 />
                 <input
@@ -194,7 +196,7 @@ export default function RegisterAreaPage() {
                   name="longitude"
                   value={formData.longitude}
                   onChange={handleChange}
-                  placeholder="Longitude"
+                  placeholder={t("register.longitude")}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 />
                 <input
@@ -202,7 +204,7 @@ export default function RegisterAreaPage() {
                   name="elevation"
                   value={formData.elevation}
                   onChange={handleChange}
-                  placeholder="Elevação (m)"
+                  placeholder={t("area.elevation")}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 />
                 <input
@@ -210,7 +212,7 @@ export default function RegisterAreaPage() {
                   name="state"
                   value={formData.state}
                   onChange={handleChange}
-                  placeholder="Estado"
+                  placeholder={t("register.state")}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 />
                 <input
@@ -218,7 +220,7 @@ export default function RegisterAreaPage() {
                   name="city"
                   value={formData.city}
                   onChange={handleChange}
-                  placeholder="Cidade"
+                  placeholder={t("area.city")}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 />
                 <select
@@ -227,7 +229,7 @@ export default function RegisterAreaPage() {
                   onChange={handleChange}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 >
-                  <option value="">Bioma</option>
+                  <option value="">{t("area.biome")}</option>
                   <option value="mata_atlantica">Mata Atlântica</option>
                   <option value="amazonia">Amazônia</option>
                   <option value="cerrado">Cerrado</option>
@@ -242,7 +244,7 @@ export default function RegisterAreaPage() {
             <div className="space-y-4 p-4 rounded-lg bg-purple-50/50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800">
               <div className="flex items-center gap-2">
                 <Leaf className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-                <h3 className="font-semibold text-gray-900 dark:text-white">Status e Conservação</h3>
+                <h3 className="font-semibold text-gray-900 dark:text-white">{t("area.statusConservation")}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <select
@@ -251,8 +253,8 @@ export default function RegisterAreaPage() {
                   onChange={handleChange}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 >
-                  <option value="active">Ativa</option>
-                  <option value="inactive">Inativa</option>
+                  <option value="active">{t("register.active")}</option>
+                  <option value="inactive">{t("register.inactive")}</option>
                 </select>
                 <select
                   name="conservation_status"
@@ -260,11 +262,11 @@ export default function RegisterAreaPage() {
                   onChange={handleChange}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 >
-                  <option value="">Status de conservação</option>
-                  <option value="preservada">Preservada</option>
-                  <option value="perturbada">Perturbada</option>
-                  <option value="degradada">Degradada</option>
-                  <option value="recuperacao">Em recuperação</option>
+                  <option value="">{t("area.conservationStatus")}</option>
+                  <option value="preservada">{t("area.preserved")}</option>
+                  <option value="perturbada">{t("area.disturbed")}</option>
+                  <option value="degradada">{t("area.degraded")}</option>
+                  <option value="recuperacao">{t("area.recovering")}</option>
                 </select>
                 <input
                   type="date"
@@ -309,7 +311,7 @@ export default function RegisterAreaPage() {
               className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-green-200 dark:hover:shadow-green-900/30 flex items-center justify-center gap-2"
             >
               <LandPlot className="w-5 h-5" />
-              Cadastrar Área
+              {t("area.submit")}
             </button>
           </form>
         </div>
@@ -321,8 +323,8 @@ export default function RegisterAreaPage() {
               <Satellite className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">Áreas Cadastradas</h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{areas.length} áreas monitoradas</p>
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t("area.listTitle")}</h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{t("area.listCount", { count: areas.length })}</p>
             </div>
           </div>
 
@@ -330,8 +332,8 @@ export default function RegisterAreaPage() {
             {areas.length === 0 ? (
               <div className="text-center py-8 text-gray-500 dark:text-gray-400">
                 <Map className="w-12 h-12 mx-auto mb-3 opacity-50" />
-                <p>Nenhuma área cadastrada</p>
-                <p className="text-sm mt-2">As áreas aparecerão aqui após o cadastro</p>
+                <p>{t("area.noneTitle")}</p>
+                <p className="text-sm mt-2">{t("area.noneSubtitle")}</p>
               </div>
             ) : (
               areas.map((area) => (
@@ -342,7 +344,7 @@ export default function RegisterAreaPage() {
                         {area.area_name}
                       </h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
-                        {area.description || "Sem descrição"}
+                        {area.description || t("register.notInformed")}
                       </p>
                     </div>
                     <div className="flex items-center gap-2 ml-3">
@@ -351,7 +353,7 @@ export default function RegisterAreaPage() {
                           ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200" 
                           : "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200"
                       }`}>
-                        {area.status === "active" ? "Ativa" : "Inativa"}
+                        {area.status === "active" ? t("register.active") : t("register.inactive")}
                       </span>
                       <button
                         onClick={() => removeArea(area.area_id)}
@@ -372,16 +374,16 @@ export default function RegisterAreaPage() {
                       <span>{area.vegetation_type}</span>
                     </div>
                     <div>
-                      <span className="font-medium">Tamanho:</span> {area.area_size} ha
+                      <span className="font-medium">{t("area.sizeLabel")}</span> {area.area_size} ha
                     </div>
                     <div>
-                      <span className="font-medium">Bioma:</span> {area.biome}
+                      <span className="font-medium">{t("area.biomeLabel")}</span> {area.biome}
                     </div>
                     <div className="col-span-2">
-                      <span className="font-medium">Coordenadas:</span> {area.latitude}, {area.longitude}
+                      <span className="font-medium">{t("area.coordsLabel")}</span> {area.latitude}, {area.longitude}
                     </div>
                     <div className="col-span-2">
-                      <span className="font-medium">Status de conservação:</span> {area.conservation_status || "Não informado"}
+                      <span className="font-medium">{t("area.conservationLabel")}</span> {area.conservation_status || t("register.notInformed")}
                     </div>
                   </div>
                 </div>

@@ -8,6 +8,7 @@ import {
   Plus,
   X
 } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 interface ObservationData {
   observation_id: string
@@ -34,6 +35,7 @@ interface ObservationData {
 }
 
 export default function RegisterPage() {
+  const { t } = useTranslation()
   const [formData, setFormData] = useState<ObservationData>({
     observation_id: "",
     update_datetime: new Date().toISOString().split('T')[0],
@@ -112,8 +114,8 @@ export default function RegisterPage() {
             <Leaf className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Registro de Observações</h1>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Sistema de monitoramento de floração</p>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{t("register.headerTitle")}</h1>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{t("register.headerSubtitle")}</p>
           </div>
         </div>
       </header>
@@ -126,8 +128,8 @@ export default function RegisterPage() {
               <Plus className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">Nova Observação</h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Registre dados de floração</p>
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t("register.newObservation")}</h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{t("register.registerData")}</p>
             </div>
           </div>
 
@@ -136,7 +138,7 @@ export default function RegisterPage() {
             <div className="space-y-4 p-4 rounded-lg bg-green-50/50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-green-600 dark:text-green-400" />
-                <h3 className="font-semibold text-gray-900 dark:text-white">Localização</h3>
+                <h3 className="font-semibold text-gray-900 dark:text-white">{t("register.location")}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
@@ -144,7 +146,7 @@ export default function RegisterPage() {
                   name="latitude"
                   value={formData.latitude}
                   onChange={handleChange}
-                  placeholder="Latitude"
+                  placeholder={t("register.latitude")}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 />
                 <input
@@ -152,7 +154,7 @@ export default function RegisterPage() {
                   name="longitude"
                   value={formData.longitude}
                   onChange={handleChange}
-                  placeholder="Longitude"
+                  placeholder={t("register.longitude")}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 />
                 <input
@@ -160,7 +162,7 @@ export default function RegisterPage() {
                   name="elevation"
                   value={formData.elevation}
                   onChange={handleChange}
-                  placeholder="Elevação (m)"
+                  placeholder={t("register.elevation")}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 />
                 <input
@@ -168,7 +170,7 @@ export default function RegisterPage() {
                   name="state"
                   value={formData.state}
                   onChange={handleChange}
-                  placeholder="Estado"
+                  placeholder={t("register.state")}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 />
               </div>
@@ -178,7 +180,7 @@ export default function RegisterPage() {
             <div className="space-y-4 p-4 rounded-lg bg-blue-50/50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
               <div className="flex items-center gap-2">
                 <Leaf className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                <h3 className="font-semibold text-gray-900 dark:text-white">Espécie</h3>
+                <h3 className="font-semibold text-gray-900 dark:text-white">{t("register.speciesSection")}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
@@ -186,7 +188,7 @@ export default function RegisterPage() {
                   name="genus"
                   value={formData.genus}
                   onChange={handleChange}
-                  placeholder="Gênero"
+                  placeholder={t("register.genus")}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 />
                 <input
@@ -194,7 +196,7 @@ export default function RegisterPage() {
                   name="species"
                   value={formData.species}
                   onChange={handleChange}
-                  placeholder="Espécie"
+                  placeholder={t("register.species")}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 />
                 <input
@@ -202,7 +204,7 @@ export default function RegisterPage() {
                   name="common_name"
                   value={formData.common_name}
                   onChange={handleChange}
-                  placeholder="Nome comum"
+                  placeholder={t("register.commonName")}
                   className="md:col-span-2 px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 />
               </div>
@@ -212,7 +214,7 @@ export default function RegisterPage() {
             <div className="space-y-4 p-4 rounded-lg bg-purple-50/50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-                <h3 className="font-semibold text-gray-900 dark:text-white">Fenologia</h3>
+                <h3 className="font-semibold text-gray-900 dark:text-white">{t("register.phenology")}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
@@ -228,16 +230,16 @@ export default function RegisterPage() {
                   onChange={handleChange}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 >
-                  <option value="">Status da fenofase</option>
-                  <option value="1">Ativa</option>
-                  <option value="0">Inativa</option>
+                  <option value="">{t("register.phenophaseStatus")}</option>
+                  <option value="1">{t("register.active")}</option>
+                  <option value="0">{t("register.inactive")}</option>
                 </select>
                 <input
                   type="text"
                   name="phenophase_description"
                   value={formData.phenophase_description}
                   onChange={handleChange}
-                  placeholder="Descrição da fenofase"
+                  placeholder={t("register.phenophaseDescription")}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 />
                 <input
@@ -245,7 +247,7 @@ export default function RegisterPage() {
                   name="intensity_value"
                   value={formData.intensity_value}
                   onChange={handleChange}
-                  placeholder="Valor de intensidade"
+                  placeholder={t("register.intensityValue")}
                   className="px-3 py-2 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200"
                 />
               </div>
@@ -256,7 +258,7 @@ export default function RegisterPage() {
               className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-green-200 dark:hover:shadow-green-900/30 flex items-center justify-center gap-2"
             >
               <Upload className="w-5 h-5" />
-              Registrar Observação
+              {t("register.submit")}
             </button>
           </form>
         </div>
@@ -268,8 +270,8 @@ export default function RegisterPage() {
               <Satellite className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">Observações Registradas</h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{observations.length} registros</p>
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">{t("register.listTitle")}</h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{t("register.listCount", { count: observations.length })}</p>
             </div>
           </div>
 
@@ -277,8 +279,8 @@ export default function RegisterPage() {
             {observations.length === 0 ? (
               <div className="text-center py-8 text-gray-500 dark:text-gray-400">
                 <Leaf className="w-12 h-12 mx-auto mb-3 opacity-50" />
-                <p>Nenhuma observação registrada</p>
-                <p className="text-sm mt-2">As observações aparecerão aqui após o registro</p>
+                <p>{t("register.noneTitle")}</p>
+                <p className="text-sm mt-2">{t("register.noneSubtitle")}</p>
               </div>
             ) : (
               observations.map((obs) => (
@@ -289,7 +291,7 @@ export default function RegisterPage() {
                         {obs.genus} {obs.species}
                       </h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        {obs.common_name || "Sem nome comum"}
+                        {obs.common_name || t("register.noCommonName")}
                       </p>
                     </div>
                     <div className="flex items-center gap-2 ml-3">
@@ -298,7 +300,7 @@ export default function RegisterPage() {
                           ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200" 
                           : "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200"
                       }`}>
-                        {obs.phenophase_status === "1" ? "Ativa" : "Inativa"}
+                        {obs.phenophase_status === "1" ? t("register.active") : t("register.inactive")}
                       </span>
                       <button
                         onClick={() => removeObservation(obs.observation_id)}
@@ -310,16 +312,16 @@ export default function RegisterPage() {
                   </div>
                   <div className="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-400">
                     <div>
-                      <span className="font-medium">Data:</span> {obs.observation_date}
+                      <span className="font-medium">{t("register.data")}</span> {obs.observation_date}
                     </div>
                     <div>
-                      <span className="font-medium">Local:</span> {obs.latitude}, {obs.longitude}
+                      <span className="font-medium">{t("register.place")}</span> {obs.latitude}, {obs.longitude}
                     </div>
                     <div className="col-span-2">
-                      <span className="font-medium">Fenofase:</span> {obs.phenophase_description || "Não informada"}
+                      <span className="font-medium">{t("register.phenophase")}</span> {obs.phenophase_description || t("register.notInformed")}
                     </div>
                     <div className="col-span-2">
-                      <span className="font-medium">Intensidade:</span> {obs.intensity_value || "Não informada"}
+                      <span className="font-medium">{t("register.intensity")}</span> {obs.intensity_value || t("register.notInformed")}
                     </div>
                   </div>
                 </div>
