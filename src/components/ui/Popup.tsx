@@ -5,8 +5,7 @@ import { Button } from "@/components/ui/button"
 import { MapPin, X } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { useState } from "react"
-import { SpeciesList } from "./SpeciesList"
-import { useNavigate } from "react-router-dom" 
+import { SpeciesList } from "./SpeciesList" 
 
 interface Species {
   scientificName: string
@@ -18,6 +17,7 @@ interface PopupComponentProps {
   description: string
   species?: Species[]
   onClose?: () => void
+  onViewMoreDetails?: (description: string, coordinates: { latitude: number; longitude: number }) => void
 }
 
 function PopupComponent({
@@ -25,18 +25,15 @@ function PopupComponent({
   longitude,
   description,
   onClose,
+  onViewMoreDetails,
 }: PopupComponentProps) {
-  const navigate = useNavigate() // Adicione este hook
   const [showSpecies, setShowSpecies] = useState(false)
 
-  // Função para navegar para a página de chat
+  // Função para mostrar o ChatModal
   const handleMoreInfo = () => {
-    navigate('/chat', { 
-      state: { 
-        locationDescription: description,
-        coordinates: { latitude, longitude }
-      } 
-    })
+    if (onViewMoreDetails) {
+      onViewMoreDetails(description, { latitude, longitude })
+    }
   }
 
   return (
