@@ -2,7 +2,11 @@ import { MapContainer, TileLayer, Circle, Popup } from "react-leaflet";
 
 import PopupComponent from "./Popup"; // your React Popup component
 
-function Map() {
+interface MapProps {
+  onViewMoreDetails?: (description: string, coordinates: { latitude: number; longitude: number }) => void
+}
+
+function Map({ onViewMoreDetails }: MapProps) {
   return (
     <MapContainer
       center={[-29.1671084, -51.5244032]}
@@ -25,7 +29,8 @@ function Map() {
           <PopupComponent 
           latitude={-29.1671084}
           longitude={-51.5244032}
-          description="Center of Bento Gonçalves"
+          description="Center of Bento Gonçalvesaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          onViewMoreDetails={onViewMoreDetails}
           />
         </Popup>
       </Circle>
