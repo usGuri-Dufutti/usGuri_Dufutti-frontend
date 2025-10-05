@@ -38,7 +38,7 @@ function MapSidebar() {
                         <Leaf className="w-7 h-7 sm:w-8 sm:h-8 text-green-600 dark:text-green-400" />
                     </div>
                     <div>
-                        <h2 className="text-lg font-bold text-gray-900 dark:text-white">Bloomwatch</h2>
+                        <h2 className="text-lg font-bold text-gray-900 dark:text-white">BloomPedia</h2>
                         <p className="text-xs text-gray-600 dark:text-gray-400">{t("mapSidebar.subtitle")}</p>
                     </div>
                 </div>
@@ -57,10 +57,6 @@ function MapSidebar() {
                         </div>
                     </SidebarGroupContent>
                 </SidebarGroup>
-
-               
-
-    
 
                 {/* Bloom Status */}
                 <SidebarGroup>

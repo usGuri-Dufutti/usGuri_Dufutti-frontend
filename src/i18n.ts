@@ -5,7 +5,7 @@ import LanguageDetector from "i18next-browser-languagedetector"
 const resources = {
   en: {
     translation: {
-      brand: "BloomWatch",
+      brand: "BloomPedia",
       nav: {
         home: "Home",
         about: "About",
@@ -23,12 +23,12 @@ const resources = {
       about: {
         sectionTitle: "About the Project",
         sectionParagraph:
-          "BloomWatch is a strategic tool for public policy and environmental action. By providing precise, real-time data on blooming events, we support public health, sustainable agriculture, and biodiversity conservation, turning science into concrete decisions.",
+          "BloomPedia is an environmental monitoring tool that provides clear visualizations and real-time data on bloom events. With accurate information, we support public health, sustainable agriculture, and biodiversity conservation, transforming scientific monitoring into concrete and strategic actions.",
         benefits: {
           monitoring: {
             title: "Real-time Monitoring",
             description:
-              "Automatic bloom detection to anticipate environmental crises and support public policies to mitigate climate change.",
+              "Automatic bloom detection to anticipate environmental crises and support public policies for climate change mitigation.",
           },
           health: {
             title: "Public Health",
@@ -38,17 +38,17 @@ const resources = {
           agriculture: {
             title: "Sustainable Agriculture",
             description:
-              "Geospatial data for responsible agricultural planning, resource optimization, and promotion of sustainable practices.",
+              "Geospatial data for responsible agricultural planning, resource optimization, and the promotion of sustainable practices.",
           },
           research: {
             title: "Research and Conservation",
             description:
-              "Historical database that supports biodiversity preservation policies and conservation strategies.",
+              "Historical database that supports biodiversity preservation policies and environmental conservation strategies.",
           },
         },
         architectureTitle: "System Architecture",
         architectureDescription:
-          "End-to-end pipeline for acquisition, processing, and visualization of geospatial data to support strategic decision-making.",
+          "Complete pipeline for acquisition, processing, and visualization of geospatial data to support strategic decision-making.",
         details: {
           data: {
             title: "Data Acquisition",
@@ -58,19 +58,19 @@ const resources = {
           processing: {
             title: "Processing and Analysis",
             content:
-              "Automated pipeline of geospatial data analysis using anomaly detection algorithms and machine learning. Identification of seasonal patterns and atypical bloom events to support public policy and scientific research.",
+              "Frontend built with React and TypeScript for visualization and registration of areas and species. The Python backend manages data processing and database integration, ensuring real-time updates and supporting environmental analyses.",
           },
           visualization: {
             title: "Visualization and Access",
             content:
-              "Interactive web interface with dynamic maps to track bloom events at multiple scales. REST API for integration with external systems, enabling custom analyses and supporting strategic decision-making.",
+              "Interactive web interface with dynamic maps to track bloom events across multiple scales. FAST API for integration with external systems, enabling custom analyses and supporting strategic decision-making.",
           },
         },
       },
       team: {
         sectionTitle: "Our Team of Explorers",
         sectionParagraph:
-          "Bringing together science, technology, and creativity to understand the pulse of life on Earth.",
+          "Combining science, technology, and creativity to understand the pulse of life on Earth.",
         roles: {
           backendDev: "Backend Developer",
           frontendDev: "Frontend Developer",
@@ -190,7 +190,7 @@ const resources = {
       about: {
         sectionTitle: "Sobre o Projeto",
         sectionParagraph:
-          "O BloomWatch é uma ferramenta estratégica para políticas públicas e ações ambientais. Fornecendo dados precisos e em tempo real sobre eventos de floração, apoiamos saúde pública, agricultura sustentável e conservação da biodiversidade, transformando ciência em decisões concretas.",
+          "O BloomWatch é uma ferramenta de monitoramento ambiental que oferece visualizações claras e dados em tempo real sobre eventos de floração. Com informações precisas, apoiamos a saúde pública, a agricultura sustentável e a conservação da biodiversidade, transformando o acompanhamento científico em ações concretas e estratégicas.",
         benefits: {
           monitoring: {
             title: "Monitoramento em Tempo Real",
@@ -225,12 +225,12 @@ const resources = {
           processing: {
             title: "Processamento e Análise",
             content:
-              "Pipeline automatizado de análise de dados geoespaciais utilizando algoritmos de detecção de anomalias e machine learning. Identificação de padrões sazonais e eventos de floração atípicos para subsidiar políticas públicas e pesquisas científicas.",
+              "Interface desenvolvida em React e TypeScript para visualização e cadastro de áreas e espécies. O backend em Python gerencia o processamento dos dados e a integração com o banco, garantindo atualização em tempo real e suporte às análises ambientais.",
           },
           visualization: {
             title: "Visualização e Acesso",
             content:
-              "Interface web interativa com mapas dinâmicos para acompanhamento de eventos de floração em múltiplas escalas. API REST para integração com sistemas externos, permitindo análises customizadas e suporte à tomada de decisões estratégicas.",
+              "Interface web interativa com mapas dinâmicos para acompanhamento de eventos de floração em múltiplas escalas. FAST API para integração com sistemas externos, permitindo análises customizadas e suporte à tomada de decisões estratégicas.",
           },
         },
       },
@@ -356,5 +356,3 @@ i18n
   })
 
 export default i18n
-
-
