@@ -10,7 +10,7 @@ import {
     SidebarMenuButton
 } from "@/components/ui/sidebar";
 import { useNavigate } from "react-router-dom";
-import { MapPin, Layers, Calendar, Download, Eye, Leaf, LandPlot, Sprout } from "lucide-react";
+import { Calculator, Layers, Download, Eye, Leaf, LandPlot, Sprout } from "lucide-react";
 
 function MapSidebar() {
     const navigate = useNavigate();
@@ -37,7 +37,7 @@ function MapSidebar() {
                     </div>
                     <div>
                         <h2 className="text-lg font-bold text-gray-900 dark:text-white">Bloomwatch</h2>
-                        <p className="text-xs text-gray-600 dark:text-gray-400">Monitoramento de Floração</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">Blooming Events Monitoring</p>
                     </div>
                 </div>
             </SidebarHeader>
@@ -46,61 +46,37 @@ function MapSidebar() {
                 {/* Métricas Principais */}
                 <SidebarGroup>
                     <SidebarGroupContent>
-                        <div className="grid grid-cols-2 gap-3 text-center">
-                            <div className="p-3 rounded-lg bg-green-50/50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
-                                <div className="text-sm font-medium text-green-600 dark:text-green-400">NDVI</div>
-                                <div className="text-lg font-bold text-gray-900 dark:text-white">0.68</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Saúdavel</div>
-                            </div>
+                        <div className="flex text-center items-center justify-center">
                             <div className="p-3 rounded-lg bg-blue-50/50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
-                                <div className="text-sm font-medium text-blue-600 dark:text-blue-400">Área</div>
-                                <div className="text-lg font-bold text-gray-900 dark:text-white">3.1km²</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Monitorada</div>
+                                <div className="text-sm font-medium text-blue-600 dark:text-blue-400">Monitored</div>
+                                <div className="text-md font-bold text-gray-900 dark:text-white">California</div>
+                                <div className="text-sm font-medium mt-1 text-blue-600 dark:text-blue-400">Area</div>
                             </div>
                         </div>
                     </SidebarGroupContent>
                 </SidebarGroup>
 
-                {/* Localização Atual */}
-                <SidebarGroup>
-                    <SidebarGroupLabel className="text-sm font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-green-600" />
-                        Localização
-                    </SidebarGroupLabel>
-                    <SidebarGroupContent>
-                        <div className="text-sm space-y-2 p-3 bg-gray-50/50 dark:bg-gray-800/20 rounded-lg">
-                            <div className="flex justify-between">
-                                <span className="text-gray-600 dark:text-gray-400">Cidade:</span>
-                                <span className="text-green-600 dark:text-green-400 font-medium">Caxias do Sul</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-gray-600 dark:text-gray-400">Estado:</span>
-                                <span className="font-medium">RS</span>
-                            </div>
-                            <div className="text-xs font-mono text-gray-500 dark:text-gray-400 text-center mt-2">
-                                -29.167, -51.524
-                            </div>
-                        </div>
-                    </SidebarGroupContent>
-                </SidebarGroup>
+               
+
+    
 
                 {/* Status da Floração */}
                 <SidebarGroup>
                     <SidebarGroupLabel className="text-sm font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-purple-600" />
-                        Status da Floração
+                        <Calculator className="w-4 h-4 text-purple-600" />
+                        Areas Count
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
                         <div className="p-3 bg-purple-50/50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
                             <div className="flex items-center justify-between mb-2">
-                                <span className="text-sm text-gray-600 dark:text-gray-400">Intensidade</span>
+                                <span className="text-sm text-gray-600 dark:text-gray-400">Number of Areas</span>
                                 <span className="px-2 py-1 rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 text-xs font-medium">
-                                    Moderada
+                                    5
                                 </span>
                             </div>
                             <div className="flex items-center justify-between text-sm">
-                                <span className="text-gray-600 dark:text-gray-400">Detectado em</span>
-                                <span className="text-green-600 dark:text-green-400 font-medium">10/12/2024</span>
+                                <span className="text-gray-600 dark:text-gray-400">Data of Detection</span>
+                                <span className="text-green-600 dark:text-green-400 font-medium">05/10/25</span>
                             </div>
                         </div>
                     </SidebarGroupContent>
@@ -109,7 +85,7 @@ function MapSidebar() {
                 {/* Botões de Ação */}
                 <SidebarGroup>
                     <SidebarGroupLabel className="text-sm font-semibold text-gray-900 dark:text-white">
-                        Registros
+                        Register
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
                         <div className="grid grid-cols-2 gap-2">
@@ -121,7 +97,7 @@ function MapSidebar() {
                                     <Sprout className="w-4 h-4 text-white" />
                                 </div>
                                 <span className="text-xs font-medium text-green-700 dark:text-green-300 text-center">
-                                    Nova Planta
+                                    New Plant
                                 </span>
                             </button>
 
@@ -133,7 +109,7 @@ function MapSidebar() {
                                     <LandPlot className="w-4 h-4 text-white" />
                                 </div>
                                 <span className="text-xs font-medium text-blue-700 dark:text-blue-300 text-center">
-                                    Nova Área
+                                    New Area
                                 </span>
                             </button>
                         </div>
@@ -144,20 +120,20 @@ function MapSidebar() {
                 <SidebarGroup>
                     <SidebarGroupLabel className="text-sm font-semibold text-gray-900 dark:text-white flex items-center gap-2">
                         <Layers className="w-4 h-4 text-blue-600" />
-                        Ferramentas
+                        Tools
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             <SidebarMenuItem>
                                 <SidebarMenuButton className="w-full justify-start p-3 text-sm gap-3 hover:bg-green-50 dark:hover:bg-green-900/20 rounded-lg">
                                     <Eye className="w-4 h-4 text-green-600" />
-                                    Visualizar Histórico
+                                   View History
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
                             <SidebarMenuItem>
                                 <SidebarMenuButton className="w-full justify-start p-3 text-sm gap-3 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg">
                                     <Download className="w-4 h-4 text-blue-600" />
-                                    Exportar Dados
+                                    Export Data
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
                         </SidebarMenu>
