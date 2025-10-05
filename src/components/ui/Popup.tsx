@@ -4,12 +4,11 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { MapPin, X } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { SpeciesList } from "./SpeciesList" 
+import { getAreaById, type AreaDetail } from "@/services/api"
 
-interface Species {
-  scientificName: string
-}
+interface Species { scientificName: string }
 
 interface PopupComponentProps {
   latitude: number
@@ -28,6 +27,32 @@ function PopupComponent({
   onViewMoreDetails,
 }: PopupComponentProps) {
   const [showSpecies, setShowSpecies] = useState(false)
+  const [speciesList, setSpeciesList] = useState<Species[] | undefined>(undefined)
+
+  // When species tab is opened, fetch species for this area by calling GET-by-ID.
+  useEffect(() => {
+    if (!showSpecies) return
+    // We do not have the area id here directly; in this simplified wiring, try to infer via description like "Area {id}".
+    const maybeId = (() => {
+      const match = /^Area\s+(\d+)$/i.exec(description?.trim?.() || "")
+      return match ? Number(match[1]) : undefined
+    })()
+    if (!maybeId) return
+    let mounted = true
+    getAreaById(maybeId)
+      .then((detail: AreaDetail) => {
+        if (!mounted) return
+        const species = detail.plants?.map((p) => ({ scientificName: p.species })) || []
+        setSpeciesList(species)
+      })
+      .catch(() => {
+        if (!mounted) return
+        setSpeciesList([])
+      })
+    return () => {
+      mounted = false
+    }
+  }, [showSpecies, description])
 
   // Função para mostrar o ChatModal
   const handleMoreInfo = () => {
@@ -124,6 +149,7 @@ function PopupComponent({
         <SpeciesList
           onBack={() => setShowSpecies(false)}
           onClose={onClose}
+          items={speciesList}
         />
       </div>
     </Card>
