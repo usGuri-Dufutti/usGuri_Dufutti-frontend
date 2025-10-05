@@ -1,9 +1,15 @@
-import { Button } from "@/components/ui/button";
+import { Header } from "../components/Header"
+import { HeroSection } from "../components/HeroSection"
+import { AboutSection } from "../components/AboutSection"
+import { TeamSection } from "../components/TeamSection"
 
 function HomePage() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-        <Button>Click mee</Button>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <Header />
+      <HeroSection />
+      <AboutSection />
+      <TeamSection />
     </div>
   );
 }
