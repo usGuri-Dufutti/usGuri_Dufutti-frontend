@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { Leaf, Loader2, Satellite, MapPin } from "lucide-react"
+import { Leaf, Send, Loader2, Satellite, MapPin } from "lucide-react"
 import { useLocation } from "react-router-dom"
-import { useTranslation } from "react-i18next"
+import { sendChatMessage } from "@/services/api"
 
 interface Message {
   role: "user" | "assistant"
@@ -12,8 +12,9 @@ export default function ChatPage() {
   const location = useLocation()
   const { t } = useTranslation()
   
-  const locationState = location.state as { locationDescription?: string } || {}
-  const locationDescription = locationState.locationDescription || ""
+  const locationState = location.state as { locationDescription?: string; areaId?: number } || {}
+  const locationDescription = locationState.locationDescription || "Área de monitoramento de vegetação"
+  const areaId = locationState.areaId
 
   const [prompt, setPrompt] = useState("")
   const [messages, setMessages] = useState<Message[]>([])
@@ -21,7 +22,7 @@ export default function ChatPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!prompt.trim() || isLoading) return
+    if (!prompt.trim() || isLoading || !areaId) return
 
     const userMessage = prompt.trim()
     setPrompt("")
@@ -29,11 +30,8 @@ export default function ChatPage() {
     setIsLoading(true)
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-
-      const aiResponse = `Based on the satellite data for the queried region, I can provide detailed information about "${userMessage}". The monitored area shows a healthy vegetation signal (e.g., NDVI ~0.68) with bloom patterns consistent with the current seasonal period.`
-
-      setMessages((prev) => [...prev, { role: "assistant", content: aiResponse }])
+      const response = await sendChatMessage(areaId, userMessage)
+      setMessages((prev) => [...prev, { role: "assistant", content: response.answer }])
     } catch (error) {
       console.error("Error fetching AI response:", error)
       setMessages((prev) => [
@@ -134,6 +132,17 @@ export default function ChatPage() {
                 className="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl backdrop-blur-sm focus:border-green-500 dark:focus:border-green-400 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all duration-200 text-sm"
                 disabled={isLoading}
               />
+              <button
+                type="submit"
+                disabled={!prompt.trim() || isLoading || !areaId}
+                className="h-[60px] w-[60px] flex items-center justify-center bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 disabled:from-gray-400 disabled:to-gray-500 border border-green-200 dark:border-green-800 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
+              >
+                {isLoading ? (
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                ) : (
+                  <Send className="w-5 h-5" />
+                )}
+              </button>
             </div>
           </form>
         </div>

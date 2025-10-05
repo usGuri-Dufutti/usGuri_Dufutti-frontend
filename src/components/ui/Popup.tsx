@@ -4,35 +4,56 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { MapPin, X } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { SpeciesList } from "./SpeciesList" 
+import { getAreaById, type AreaDetail } from "@/services/api"
 
-interface Species {
-  scientificName: string
-}
+interface Species { scientificName: string }
 
 interface PopupComponentProps {
   latitude: number
   longitude: number
   description: string
+  areaId: number
   species?: Species[]
   onClose?: () => void
-  onViewMoreDetails?: (description: string, coordinates: { latitude: number; longitude: number }) => void
+  onViewMoreDetails?: (description: string, coordinates: { latitude: number; longitude: number }, areaId: number) => void
 }
 
 function PopupComponent({
   latitude,
   longitude,
   description,
+  areaId,
   onClose,
   onViewMoreDetails,
 }: PopupComponentProps) {
   const [showSpecies, setShowSpecies] = useState(false)
+  const [speciesList, setSpeciesList] = useState<Species[] | undefined>(undefined)
+
+  // When species tab is opened, fetch species for this area by calling GET-by-ID.
+  useEffect(() => {
+    if (!showSpecies) return
+    let mounted = true
+    getAreaById(areaId)
+      .then((detail: AreaDetail) => {
+        if (!mounted) return
+        const species = detail.plants?.map((p) => ({ scientificName: p.species })) || []
+        setSpeciesList(species)
+      })
+      .catch(() => {
+        if (!mounted) return
+        setSpeciesList([])
+      })
+    return () => {
+      mounted = false
+    }
+  }, [showSpecies, areaId])
 
   // Função para mostrar o ChatModal
   const handleMoreInfo = () => {
     if (onViewMoreDetails) {
-      onViewMoreDetails(description, { latitude, longitude })
+      onViewMoreDetails(description, { latitude, longitude }, areaId)
     }
   }
 
@@ -95,9 +116,11 @@ function PopupComponent({
           </div>
 
           {/* Description */}
-          <div className="bg-white/60 rounded-lg p-4 border border-emerald-200/50">
-            <div className="text-xs font-medium text-emerald-700 uppercase tracking-wider mb-2">Description</div>
-            <p className="text-sm text-emerald-950 leading-relaxed">{description}</p>
+          <div className="bg-white/60 rounded-lg p-4 border border-emerald-200/50 flex flex-col max-h-32">
+            <div className="text-xs font-medium text-emerald-700 uppercase tracking-wider mb-2 flex-shrink-0">Description</div>
+            <div className="overflow-y-auto flex-1 min-h-0">
+              <p className="text-sm text-emerald-950 leading-relaxed">{description}</p>
+            </div>
           </div>
 
           {/* Action Buttons */}
@@ -124,6 +147,7 @@ function PopupComponent({
         <SpeciesList
           onBack={() => setShowSpecies(false)}
           onClose={onClose}
+          items={speciesList}
         />
       </div>
     </Card>
