@@ -7,7 +7,8 @@ import {
   X,
   Navigation,
   Map,
-  LandPlot
+  LandPlot,
+  ArrowLeft
 } from "lucide-react"
 import { useTranslation } from "react-i18next"
 
@@ -32,6 +33,7 @@ interface AreaData {
 
 export default function RegisterAreaPage() {
   const { t } = useTranslation()
+  
   const [formData, setFormData] = useState<AreaData>({
     area_id: "",
     area_name: "",
@@ -103,14 +105,23 @@ export default function RegisterAreaPage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-blue-50 dark:from-gray-900 dark:via-green-900/10 dark:to-blue-900/10">
       {/* Header Simples */}
       <header className="p-6 border-b border-green-200 dark:border-green-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg flex items-center justify-center">
-            <LandPlot className="w-6 h-6 text-white" />
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg flex items-center justify-center">
+              <LandPlot className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{t("area.headerTitle")}</h1>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{t("area.headerSubtitle")}</p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{t("area.headerTitle")}</h1>
-            <p className="text-sm text-gray-600 dark:text-gray-400">{t("area.headerSubtitle")}</p>
-          </div>
+          <button
+            onClick={() => history.back()}
+            aria-label="Go back"
+            className="flex items-center justify-center w-10 h-10 rounded-lg bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+          >
+            <ArrowLeft className="w-5 h-5 text-gray-700 dark:text-gray-200" />
+          </button>
         </div>
       </header>
 
@@ -289,7 +300,7 @@ export default function RegisterAreaPage() {
             <div className="space-y-4 p-4 rounded-lg bg-orange-50/50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800">
               <div className="flex items-center gap-2">
                 <Upload className="w-4 h-4 text-orange-600 dark:text-orange-400" />
-                <h3 className="font-semibold text-gray-900 dark:text-white">Imagem da Área (Opcional)</h3>
+                <h3 className="font-semibold text-gray-900 dark:text-white">{t("area.imageOptional")}</h3>
               </div>
               <div className="flex items-center gap-3">
                 <input

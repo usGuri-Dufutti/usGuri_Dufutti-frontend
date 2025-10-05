@@ -5,7 +5,7 @@ import LanguageDetector from "i18next-browser-languagedetector"
 const resources = {
   en: {
     translation: {
-      brand: "BloomPedia",
+      brand: "BloomWatch",
       nav: {
         home: "Home",
         about: "About",
@@ -172,6 +172,9 @@ const resources = {
   },
   "pt-BR": {
     translation: {
+      common: {
+        backToMap: "Voltar para o Mapa",
+      },
       brand: "BloomWatch",
       nav: {
         home: "Início",
