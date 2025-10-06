@@ -7,7 +7,8 @@ import {
   Satellite,
   Plus,
   X,
-  ArrowLeft
+  ArrowLeft,
+  Navigation
 } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
@@ -112,30 +113,39 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-blue-50 dark:from-gray-900 dark:via-green-900/10 dark:to-blue-900/10">
       {/* Header */}
-      <header className="p-6 border-b border-green-200 dark:border-green-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+      <div className="p-4 sm:p-6 border-b border-green-200 dark:border-green-800 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg flex items-center justify-center">
-              <Leaf className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg flex items-center justify-center">
+              <Leaf className="w-5 h-5 text-white" />
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{t("register.headerTitle")}</h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t("register.headerSubtitle")}</p>
+            <div className="flex-1 min-w-0">
+              <h1 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white truncate">
+                {t("register.headerTitle")}
+              </h1>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                {t("register.headerSubtitle")}
+              </p>
             </div>
           </div>
           <button
             onClick={() => navigate(-1)}
-            aria-label="Go back"
-            className="flex items-center justify-center w-10 h-10 rounded-lg bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            className="flex items-center gap-2 px-4 sm:px-5 py-2.5 text-sm font-medium 
+              text-white bg-gradient-to-r from-green-600 to-blue-600 
+              rounded-xl shadow-md hover:shadow-lg hover:scale-105 
+              transition-all duration-200 ease-in-out flex-shrink-0"
           >
-            <ArrowLeft className="w-5 h-5 text-gray-700 dark:text-gray-200" />
+            <div className="w-5 h-5 flex items-center justify-center bg-white/20 rounded-full">
+              <ArrowLeft className="w-3 h-3" />
+            </div>
+            Voltar
           </button>
         </div>
-      </header>
+      </div>
 
-      <div className="max-w-4xl mx-auto p-6 space-y-8">
+      <div className="max-w-4xl mx-auto p-4 sm:p-6 space-y-6">
         {/* Form card */}
-        <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-green-200 dark:border-green-800 p-6 shadow-lg">
+        <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl border border-green-200 dark:border-green-800 shadow-2xl p-4 sm:p-6">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg flex items-center justify-center">
               <Plus className="w-5 h-5 text-white" />
@@ -150,7 +160,7 @@ export default function RegisterPage() {
             {/* Location */}
             <div className="space-y-4 p-4 rounded-lg bg-green-50/50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-green-600 dark:text-green-400" />
+                <Navigation className="w-4 h-4 text-green-600 dark:text-green-400" />
                 <h3 className="font-semibold text-gray-900 dark:text-white">{t("register.location")}</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -268,7 +278,7 @@ export default function RegisterPage() {
 
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-green-200 dark:hover:shadow-green-900/30 flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-green-200 dark:hover:shadow-green-900/30 flex items-center justify-center gap-2"
             >
               <Upload className="w-5 h-5" />
               {t("register.submit")}
@@ -277,7 +287,7 @@ export default function RegisterPage() {
         </div>
 
         {/* Observations list */}
-        <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-green-200 dark:border-green-800 p-6 shadow-lg">
+        <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl border border-green-200 dark:border-green-800 shadow-2xl p-4 sm:p-6">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
               <Satellite className="w-5 h-5 text-white" />
@@ -330,11 +340,13 @@ export default function RegisterPage() {
                   </div>
 
                   <div className="grid grid-cols-2 gap-3 text-xs text-gray-600 dark:text-gray-400">
-                    <div>
-                      <span className="font-medium">{t("register.data")}</span> {obs.observation_date}
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-3 h-3" />
+                      <span>{obs.observation_date}</span>
                     </div>
-                    <div>
-                      <span className="font-medium">{t("register.place")}</span> {obs.latitude}, {obs.longitude}
+                    <div className="flex items-center gap-1">
+                      <MapPin className="w-3 h-3" />
+                      <span>{obs.latitude}, {obs.longitude}</span>
                     </div>
                     <div className="col-span-2">
                       <span className="font-medium">{t("register.phenophase")}</span> {obs.phenophase_description || t("register.notInformed")}

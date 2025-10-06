@@ -9,14 +9,13 @@ interface Species {
 }
 
 interface SpeciesListProps {
-  
   onBack?: () => void
   onClose?: () => void
+  items?: Species[]
 }
 
-export function SpeciesList({onBack, onClose }: SpeciesListProps) {
-
-  const species: Species[] = [
+export function SpeciesList({ onBack, onClose, items }: SpeciesListProps) {
+  const species: Species[] = items && items.length > 0 ? items : [
     { scientificName: "Acer saccharum" },
     { scientificName: "Quercus rubra" },
     { scientificName: "Pinus strobus" },

@@ -11,6 +11,7 @@ import {
   ArrowLeft
 } from "lucide-react"
 import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router-dom"
 
 interface AreaData {
   area_id: string
@@ -33,6 +34,7 @@ interface AreaData {
 
 export default function RegisterAreaPage() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   
   const [formData, setFormData] = useState<AreaData>({
     area_id: "",
@@ -103,31 +105,40 @@ export default function RegisterAreaPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-blue-50 dark:from-gray-900 dark:via-green-900/10 dark:to-blue-900/10">
-      {/* Header Simples */}
-      <header className="p-6 border-b border-green-200 dark:border-green-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+      {/* Header Atualizado */}
+      <div className="p-4 sm:p-6 border-b border-green-200 dark:border-green-800 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg flex items-center justify-center">
-              <LandPlot className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg flex items-center justify-center">
+              <LandPlot className="w-5 h-5 text-white" />
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{t("area.headerTitle")}</h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{t("area.headerSubtitle")}</p>
+            <div className="flex-1 min-w-0">
+              <h1 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white truncate">
+                {t("area.headerTitle")}
+              </h1>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                {t("area.headerSubtitle")}
+              </p>
             </div>
           </div>
           <button
-            onClick={() => history.back()}
-            aria-label="Go back"
-            className="flex items-center justify-center w-10 h-10 rounded-lg bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 px-4 sm:px-5 py-2.5 text-sm font-medium 
+              text-white bg-gradient-to-r from-green-600 to-blue-600 
+              rounded-xl shadow-md hover:shadow-lg hover:scale-105 
+              transition-all duration-200 ease-in-out flex-shrink-0"
           >
-            <ArrowLeft className="w-5 h-5 text-gray-700 dark:text-gray-200" />
+            <div className="w-5 h-5 flex items-center justify-center bg-white/20 rounded-full">
+              <ArrowLeft className="w-3 h-3" />
+            </div>
+            Voltar
           </button>
         </div>
-      </header>
+      </div>
 
-      <div className="max-w-4xl mx-auto p-6 space-y-8">
-        {/* Formulário no Topo */}
-        <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-green-200 dark:border-green-800 p-6 shadow-lg">
+      <div className="max-w-4xl mx-auto p-4 sm:p-6 space-y-6">
+        {/* Formulário Principal */}
+        <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl border border-green-200 dark:border-green-800 shadow-2xl p-4 sm:p-6">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg flex items-center justify-center">
               <LandPlot className="w-5 h-5 text-white" />
@@ -296,7 +307,7 @@ export default function RegisterAreaPage() {
               </div>
             </div>
 
-            {/* Upload de Imagem (Opcional) */}
+            {/* Upload de Imagem */}
             <div className="space-y-4 p-4 rounded-lg bg-orange-50/50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800">
               <div className="flex items-center gap-2">
                 <Upload className="w-4 h-4 text-orange-600 dark:text-orange-400" />
@@ -319,7 +330,7 @@ export default function RegisterAreaPage() {
 
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-green-200 dark:hover:shadow-green-900/30 flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-green-200 dark:hover:shadow-green-900/30 flex items-center justify-center gap-2"
             >
               <LandPlot className="w-5 h-5" />
               {t("area.submit")}
@@ -327,8 +338,8 @@ export default function RegisterAreaPage() {
           </form>
         </div>
 
-        {/* Lista de Áreas Cadastradas - Aparece ao rolar para baixo */}
-        <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-green-200 dark:border-green-800 p-6 shadow-lg">
+        {/* Lista de Áreas Cadastradas */}
+        <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl border border-green-200 dark:border-green-800 shadow-2xl p-4 sm:p-6">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
               <Satellite className="w-5 h-5 text-white" />
