@@ -46,7 +46,8 @@ function Map({ onViewMoreDetails }: MapProps) {
         const color = colors[index % colors.length]
         const lat = first.latitude
         const lng = first.longitude
-        const description = area.description ?? `Area ${area.id}`
+        // Try multiple possible field names for the description
+        const description = area.description || area.name || area.area_name || `Area ${area.id}`
         return (
           <Circle
             key={area.id}

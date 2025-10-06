@@ -19,6 +19,8 @@ export interface AreaSummary {
   id: number;
   coordinates: AreaCoordinate[];
   description: string | null;
+  name?: string | null;
+  area_name?: string | null;
 }
 
 export interface AreaSite {
@@ -50,6 +52,9 @@ export interface AreaDetail {
   id: number;
   coordinates: AreaCoordinate[];
   plants: AreaPlant[];
+  description?: string | null;
+  name?: string | null;
+  area_name?: string | null;
 }
 
 export async function getAreas(): Promise<AreaSummary[]> {
