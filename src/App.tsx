@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import HomePage from "./pages/HomePage"
 import MapPage from "./pages/MapPage"
-import ChatPage from "./pages/ChatPage"
 import RegisterPage from "./pages/RegisterPage"
 import RegisterAreaPage from "./pages/RegisterAreaPage"
 
@@ -11,7 +10,6 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/map" element={<MapPage />} />
-        <Route path="/chat" element={<ChatPage />} /> 
         <Route path="/register-plant" element={<RegisterPage />} /> 
         <Route path="/register-area" element={<RegisterAreaPage />} /> 
       </Routes>
